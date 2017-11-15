@@ -89,3 +89,6 @@ mc-2-big-Data.db,4,6,6,0,0,0,0,1,5,0
 mc-1-big-Data.db,3,7,9,1,2,3,1,0,2,0
 mc-3-big-Data.db,1,1,3,0,0,1,0,0,0,2
 ```
+
+
+**NOTE**: This tool ONLY supports Cassandra 3.x version and beyond. It doesn't support older versions of Cassanra.
