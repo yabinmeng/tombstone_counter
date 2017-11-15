@@ -17,7 +17,7 @@ In order to get the total amount of tombstones in the system for a Cassandra tab
 
 # Compilation and Usage of the Tool
 
-***NOTE***: This tool **ONLY** supports Cassandra 3.x version and beyond. It doesn't support older versions of Cassanra.
+***NOTE***: This tool **ONLY** supports Cassandra 3.x version and beyond. It doesn't support older versions of Cassanra!
 
 After cloning the code locally, run the following command which, when successful, will generate a target jar file under "target" sub-directory. (target/tombstone-counter-1.0-SNAPSHOT.jar).
 ```
