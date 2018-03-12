@@ -34,10 +34,12 @@ public class TombStoneCounter
         Option helpOption = new Option("h", "help", false, "Displays this help message.");
         Option casTblFolderOption = new Option("d", "dir", true, "Specify Cassandra table data directory");
         Option outputOption = new Option("o", "output", true, "Specify output file for tombstone stats.");
+        Option noCmdDisplayOption = new Option("sp", "suppress", false, "Suppress commandline display output.");
 
         options.addOption(helpOption);
         options.addOption(outputOption);
         options.addOption(casTblFolderOption);
+        options.addOption(noCmdDisplayOption);
     }
 
     private static void usageAndExit() {
@@ -104,6 +106,11 @@ public class TombStoneCounter
             System.exit(-40);
         }
 
+        boolean cmdDisp = true;
+        if ( cmd.hasOption("sp") ) {
+            cmdDisp = false;
+        }
+
         FileWriter fw = null;
         PrintWriter pw = null;
         try {
@@ -145,7 +152,9 @@ public class TombStoneCounter
 
             Descriptor descriptor = Descriptor.fromFilename(fileName);
 
-            System.out.println("\n   Analyzing SSTable File:"  + file.getName());
+            if (cmdDisp) {
+                System.out.println("\n   Analyzing SSTable File:" + file.getName());
+            }
 
             // total tombstone count
             long totalTombstoneCnt = 0;
@@ -211,12 +220,15 @@ public class TombStoneCounter
                                 for (Cell cell : row.cells()) {
                                     totalCellCnt++;
 
-                                    if (totalCellCnt % PROGRESS_BAR_BY_CELL_CNT == 0) {
-                                        if ( totalCellCnt == PROGRESS_BAR_BY_CELL_CNT ) {
-                                            System.out.print("   ");
+                                    // Display command-line output when requested
+                                    if (cmdDisp) {
+                                        if (totalCellCnt % PROGRESS_BAR_BY_CELL_CNT == 0) {
+                                            if (totalCellCnt == PROGRESS_BAR_BY_CELL_CNT) {
+                                                System.out.print("   ");
+                                            }
+                                            System.out.print(".");
+                                            System.out.flush();
                                         }
-                                        System.out.print(".");
-                                        System.out.flush();
                                     }
 
                                     if (cell.isTombstone()) {
@@ -259,19 +271,22 @@ public class TombStoneCounter
                     }
                 }
 
-                if ( totalCellCnt > PROGRESS_BAR_BY_CELL_CNT ) {
-                    System.out.println();
-                }
+                // Display command-line output when requested
+                if (cmdDisp) {
+                    if (totalCellCnt > PROGRESS_BAR_BY_CELL_CNT) {
+                        System.out.println();
+                    }
 
-                System.out.println("      Total partition/row count: " + totalPartitionCnt + "/" + totalRowCnt);
-                System.out.println("      Tomstone Count (Total): " + totalTombstoneCnt);
-                System.out.println("      Tomstone Count (Partition): " + partTombstoneCnt);
-                System.out.println("      Tomstone Count (Range): " + rangeTombstoneCnt);
-                System.out.println("      Tomstone Count (ComplexColumn): " + complexColTombstoneCnt);
-                System.out.println("      Tomstone Count (Row) - Deletion: " + rowTombstoneCnt);
-                System.out.println("      Tomstone Count (Row) - TTL: " + rowTTLedCnt);
-                System.out.println("      Tomstone Count (Cell) - Deletion: " + cellTombstoneCnt);
-                System.out.println("      Tomstone Count (Cell) - TTL: " + cellTTLedCnt);
+                    System.out.println("      Total partition/row count: " + totalPartitionCnt + "/" + totalRowCnt);
+                    System.out.println("      Tomstone Count (Total): " + totalTombstoneCnt);
+                    System.out.println("      Tomstone Count (Partition): " + partTombstoneCnt);
+                    System.out.println("      Tomstone Count (Range): " + rangeTombstoneCnt);
+                    System.out.println("      Tomstone Count (ComplexColumn): " + complexColTombstoneCnt);
+                    System.out.println("      Tomstone Count (Row) - Deletion: " + rowTombstoneCnt);
+                    System.out.println("      Tomstone Count (Row) - TTL: " + rowTTLedCnt);
+                    System.out.println("      Tomstone Count (Cell) - Deletion: " + cellTombstoneCnt);
+                    System.out.println("      Tomstone Count (Cell) - TTL: " + cellTTLedCnt);
+                }
             }
             catch (Exception ex) {
                 System.out.println("Error processing SSTable file: " + fileName);
