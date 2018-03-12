@@ -30,7 +30,7 @@ java -cp target/tombstone-counter-1.0-SNAPSHOT.jar com.castools.TombStoneCounter
 ```
 The supported program options are as below.
 ```
-usage: TombStoneCounter [-d <arg>] [-h] [-o <arg>]
+usage: TombStoneCounter [-d <arg>] [-h] [-o <arg>] [-sp]
 
 SSTable TombStone Counter for Apache Cassandra 3.x
 Options:
