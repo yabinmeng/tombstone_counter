@@ -152,9 +152,9 @@ public class TombStoneCounter
 
             Descriptor descriptor = Descriptor.fromFilename(fileName);
 
-            if (cmdDisp) {
+            //if (cmdDisp) {
                 System.out.println("\n   Analyzing SSTable File:" + file.getName());
-            }
+            //}
 
             // total tombstone count
             long totalTombstoneCnt = 0;
