@@ -41,6 +41,8 @@ Options:
 ```
 When "-d" or "-o" option is not specified, it will use the current directory as the default directory for Cassandra table data (SSTable files) directory and the output diretory for generated tombstone statistics file.
 
+If "-sp" option is specified, it will not display tombstone detail information on the command-line output while processing each SSTable.
+
 ## Output
 
 When running the tool with specified Cassanra table data directory ("-d") option, the tool will generate a tombstone statistics (csv) file that includes the tombstone count of various categories for each SSTable file. Meanwhile, it will also prints out more read-able information on the console output. Below is an example:
