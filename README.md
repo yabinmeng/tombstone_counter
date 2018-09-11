@@ -1,6 +1,5 @@
 # Overview
 
----
 ***NOTE***: 
 - This tool **ONLY** supports Cassandra 3.x version and beyond. It doesn't support older versions of Cassanra!
 - It has been tested out with DSE Cassandra for DSE version 5.0.x and 5.1.x. It has not been tested with latest DSE version 6.x yet!
