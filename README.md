@@ -1,5 +1,10 @@
 # Overview
 
+***NOTE***: 
+- This tool **ONLY** supports Cassandra 3.x version and beyond. It doesn't support older versions of Cassanra!
+- It has been tested out with DSE Cassandra for DSE version 5.0.x and 5.1.x. It has not been tested with latest DSE version 6.x yet!
+
+
 Cassandra database (including DataStax Enterprise - DSE) uses an immutable file structure, called SSTable, to store data physically on disk. With such an append-only structure, "tombstone" is needed to mark the deletion of a piece of data in Cassandra (aka, soft deletion). The downside of a "tombstone", though, is that it will slow down the read performance because Cassandra still needs to scan all tombstoned data in order to return the correct result and this process conusmes computer resources. 
 
 Cassandra evicts out tombstones through the "compaction" process. But in order to avoid some edge cases about data correctness (e.g. to avoid zombie data resurrection), tombstones need to stay in Cassandra for at least gc_grace_seconds (default 10 days). So if the age of a tombstone is less than gc_grace_seconds, the compaction process will not touch it. This means that if not properly planned (from data modeling and application development perspective), there could have execessive amount of tombstones in Cassandra system and therefore the overall read performance could be suffered.
@@ -16,8 +21,6 @@ Estimated tombstone drop times:
 In order to get the total amount of tombstones in the system for a Cassandra table, you have to sum the droppable tombstone counts for all time periods and then repeat the process for all SSTables for that Cassandra table. This process is a little bit cubersome and more importantly, it can't tell you the number of tombstones of different kinds. In lieu of this, I write a tool (as presented in this repository) to help find tombstone counts for a Cassandra table, both in total and at different category levels.
 
 # Compilation and Usage of the Tool
-
-***NOTE***: This tool **ONLY** supports Cassandra 3.x version and beyond. It doesn't support older versions of Cassanra!
 
 After cloning the code locally, run the following command which, when successful, will generate a target jar file under "target" sub-directory. (target/tombstone-counter-1.0-SNAPSHOT.jar).
 ```
