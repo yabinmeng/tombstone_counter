@@ -1,8 +1,9 @@
 # Overview
 
 ***NOTE***: 
-- This tool **ONLY** supports Cassandra 3.x version and beyond. It doesn't support older versions of Cassanra!
-- It has been tested out with DSE Cassandra for DSE version 5.0.x and 5.1.x. It has not been tested with latest DSE version 6.x yet!
+This utility **ONLY** supports OSS Cassandra 3.x version at the moment, including compatible DSE 5.0.x and 5.1.x versions.
+- It doesn't support older versions of OSS Cassanra (2.x and before).
+- It doesn't support DSE 6.0.x (and future) version Cassandra (and beyond) which has a new SSTable format that is not supported by OSS Cassandra library yet.
 ---
 
 
