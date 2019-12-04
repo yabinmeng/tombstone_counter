@@ -1,11 +1,11 @@
-# Overview
 
 ***NOTE***: 
-This utility **ONLY** supports OSS Cassandra 3.x version at the moment, including compatible DSE 5.0.x and 5.1.x versions.
+This branch (ossc3_dse5) **ONLY** supports OSS Cassandra 3.x version at the moment, including compatible DSE 5.0.x and 5.1.x versions.
 - It doesn't support older versions of OSS Cassanra (2.x and before).
 - It doesn't support DSE 6.0.x (and future) version Cassandra which has a new SSTable format that is not supported by OSS Cassandra library yet.
 ---
 
+# Overview
 
 Cassandra database (including DataStax Enterprise - DSE) uses an immutable file structure, called SSTable, to store data physically on disk. With such an append-only structure, "tombstone" is needed to mark the deletion of a piece of data in Cassandra (aka, soft deletion). The downside of a "tombstone", though, is that it will slow down the read performance because Cassandra still needs to scan all tombstoned data in order to return the correct result and this process conusmes computer resources. 
 
