@@ -5,7 +5,7 @@ This is a new branch that is designed to work with DSE version 6.0+. The origina
 
 But neither branch is designed working with older version of C* (version 2.x and before)
 
-TBD: Test this branch with DataStax DDAC, DSE 5.x, and OSS C* 3.x
+**TBD**: Test this branch with DataStax DDAC, DSE 5.x, and OSS C* 3.x
 
 ---
 
