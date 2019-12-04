@@ -1,12 +1,11 @@
+
 ---
 ***NOTE***: 
-
 This is a new branch that is designed to work with DSE version 6.0+. The original branch (ossc3_dse5) was developed to only work with OSS C* 3.x versions, including compatible DSE 5.0.x and 5.1.x versions.
 
 But neither branch is designed working with older version of C* (version 2.x and before)
 
 TBD: Test this branch with DataStax DDAC, DSE 5.x, and OSS C* 3.x
-
 ---
 
 # Overview
