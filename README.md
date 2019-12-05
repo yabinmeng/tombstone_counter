@@ -138,3 +138,13 @@ mc-2-big-Data.db,4,6,6,0,0,0,0,1,5,0
 mc-1-big-Data.db,3,7,9,1,2,3,1,0,2,0
 mc-3-big-Data.db,1,1,3,0,0,1,0,0,0,2
 ```
+
+
+# Future Improvements
+
+Currently this utility is single-threaded and scans SSTables on one DSE node (for a particular C* table) sequentially. For C* tables with lots of data, it may take a long time to complete the scan. This can be improved with the following 2 possible options:
+1. Allow to scan multiple SSTables concurrently.
+2. For one particular SSTable, allow to use multiple theads to scan it (similar to "-j <thread_num>" option in "nodetool upgradesstables" command.
+
+Another improvement that can make the utility a little easier to use is:
+3. Instead of providing the actual file system folder name (that contains the SSTable files to be scanned), the utility can simply take C* keyspace and table name as the input parammeters.
