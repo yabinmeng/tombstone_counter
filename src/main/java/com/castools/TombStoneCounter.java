@@ -139,7 +139,8 @@ public class TombStoneCounter
             fw = new FileWriter(outputStatsFile.getAbsolutePath(),  true);
             pw = new PrintWriter(new BufferedWriter(fw));
 
-            pw.println("sstable_data_file,part_cnt,row_cnt,total_ts_cnt,ts_part_cnt,ts_range_cnt,ts_complexcol_cnt,ts_row_del_cnt,ts_row_ttl_cnt,ts_cell_del_cnt,ts_cell_ttl_cnt");
+            // pw.println("sstable_data_file,part_cnt,row_cnt,total_ts_cnt,ts_part_cnt,ts_range_cnt,ts_complexcol_cnt,ts_row_del_cnt,ts_row_ttl_cnt,ts_cell_del_cnt,ts_cell_ttl_cnt");
+            pw.println("sstable_data_file,part_cnt,total_ts_cnt,ts_part_cnt,ts_range_cnt,ts_complexcol_cnt,ts_row_del_cnt,ts_row_ttl_cnt,ts_cell_del_cnt,ts_cell_ttl_cnt");
         }
         catch (IOException ioe) {
             System.out.println("\nError: Failed to write to tombstone stats output file.");
@@ -279,7 +280,8 @@ public class TombStoneCounter
                         System.out.println();
                     }
 
-                    System.out.println("      Total partition/row count: " + totalPartitionCnt + "/" + totalRowCnt);
+                    //System.out.println("      Total partition/row count: " + totalPartitionCnt + "/" + totalRowCnt);
+                    System.out.println("      Total partition: " + totalPartitionCnt );
                     System.out.println("      Tomstone Count (Total): " + totalTombstoneCnt);
                     System.out.println("      Tomstone Count (Partition): " + partTombstoneCnt);
                     System.out.println("      Tomstone Count (Range): " + rangeTombstoneCnt);
@@ -295,10 +297,21 @@ public class TombStoneCounter
                 ex.printStackTrace();
             }
 
-            pw.printf("%s,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
+
+            // NOTE : Do NOT display TotalRow count here because it is kind of meaningless.
+            //        This is because when we deleted a partition, we really don't know how
+            //        many rows were associated with that partition.
+            //
+            //        The "totalRowCnt" by the logic above is really the total number of rows
+            //        for the active live partitions. It is not about the total number of rows
+            //        within the SSTable, including both active live partitions and deleted
+            //        partitions.
+
+            //pw.printf("%s,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
+            pw.printf("%s,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
                 file.getName(),
                 totalPartitionCnt,
-                totalRowCnt,
+                //totalRowCnt,
                 totalTombstoneCnt,
                 partTombstoneCnt,
                 rangeTombstoneCnt,
