@@ -31,12 +31,32 @@ In order to get the total amount of tombstones in the system for a Cassandra tab
 
 # Compiling the Tool
 
-Unlike the original branch that is built upon Maven, this branch is built using "gradle". 
+This utility relies on C* library to work properly. The original branch (ossc3_dse5) uses OSS C* library from Maven central library, as per the following dependency specified in "pom.xml" file.
+```
+<dependency>
+   <groupId>org.apache.cassandra</groupId>
+   <artifactId>cassandra-all</artifactId>
+   <version>${cassandra.version}</version>
+</dependency>
+```
 
-After cloning the code locally, run the following command which, when successful, will generate a target jar file under "target" sub-directory. (target/tombstone-counter-1.0-SNAPSHOT.jar).
+For using this tool against DSE 6.0+, the OSS C* library won't work and the DSE C* library is needed, which is NOT available on Maven central library. We need to add DSE C* library in a local repository, which is achieved by the following dependency setting in "build.gradle" file.
+
 ```
-mvn clean compile package
+dependencies {
+    // Maven central libraries
+    ... ... 
+
+    // Local DSE libraries
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
 ```
+
+Please **NOTE**:
+* 'libs' is a sub-directory under the project home directory (where build.gradle file is). Once the project is cloned, create this folder manually and copy all DSE C* library jar files in it. 
+* The location of the DSE C* library jar files are in the following location:
+  * For packaged installation: /usr/share/dse/cassandra/lib
+  * For tarball installation: <tarball_install_home>/resources/cassandra/lib 
 
 # Using the Tool
 
