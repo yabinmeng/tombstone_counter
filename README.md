@@ -147,4 +147,5 @@ Currently this utility is single-threaded and scans SSTables on one DSE node (fo
 2. For one particular SSTable, allow to use multiple theads to scan it (similar to "-j <thread_num>" option in "nodetool upgradesstables" command.
 
 Another improvement that can make the utility a little easier to use is:
+
 3. Instead of providing the actual file system folder name (that contains the SSTable files to be scanned), the utility can simply take C* keyspace and table name as the input parammeters.
