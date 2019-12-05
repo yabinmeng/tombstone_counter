@@ -1,9 +1,12 @@
 
 ---
 ***NOTE***: 
-This is a new branch (dse6_gradle) that is designed to work with DSE version 6.0+. The original branch (ossc3_dse5) was developed to only work with OSS C* 3.x versions, including compatible DSE 5.0.x and 5.1.x versions.
 
-But neither branch is designed working with older version of C* (version 2.x and before)
+1). This is a new branch (dse6_gradle) that is designed to work with DSE version 6.0+. 
+    
+2). The original branch (ossc3_dse5) was developed to only work with OSS C* 3.x versions, including compatible DSE 5.0.x and 5.1.x versions.
+
+3). Neither branch is designed working with older version of C* (version 2.x and before)
 
 **TBD**: Test this branch with DataStax DDAC, DSE 5.x, and OSS C* 3.x
 
@@ -26,12 +29,16 @@ Estimated tombstone drop times:
 
 In order to get the total amount of tombstones in the system for a Cassandra table, you have to sum the droppable tombstone counts for all time periods and then repeat the process for all SSTables for that Cassandra table. This process is a little bit cubersome and more importantly, it can't tell you the number of tombstones of different kinds. In lieu of this, I write a tool (as presented in this repository) to help find tombstone counts for a Cassandra table, both in total and at different category levels.
 
-# Compilation and Usage of the Tool
+# Compiling the Tool
+
+Unlike the original branch that is built upon Maven, this branch is built using "gradle". 
 
 After cloning the code locally, run the following command which, when successful, will generate a target jar file under "target" sub-directory. (target/tombstone-counter-1.0-SNAPSHOT.jar).
 ```
 mvn clean compile package
 ```
+
+# Using the Tool
 
 To execute the program, run the following command:
 ```
