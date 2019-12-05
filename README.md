@@ -40,7 +40,7 @@ This utility relies on C* library to work properly. The original branch (ossc3_d
 </dependency>
 ```
 
-For using this tool against DSE 6.0+, the OSS C* library won't work and the DSE C* library is needed, which is NOT available on Maven central library. We need to add DSE C* library in a local repository, which is achieved by the following dependency setting in "build.gradle" file.
+To use this tool against DSE 6.0+, the OSS C* library won't work and the DSE C* library is needed, which is NOT available on Maven central library. We need to add DSE C* library in a local repository, which is achieved by the following dependency setting in "build.gradle" file.
 
 ```
 dependencies {
