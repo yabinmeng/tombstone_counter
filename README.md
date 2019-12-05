@@ -89,52 +89,30 @@ If "-sp" option is specified, it will not display tombstone detail information o
 
 ## Output
 
-When running the tool with specified Cassanra table data directory ("-d") option, the tool will generate a tombstone statistics (csv) file that includes the tombstone count of various categories for each SSTable file. Meanwhile, it will also prints out more read-able information on the console output. Below is an example:
+When running the tool with specified Cassanra table data directory ("-d") option, the tool will generate a tombstone statistics (csv) file that includes the tombstone count of various categories for each SSTable file. Meanwhile, it will also prints out more read-able information on the console output. Below is an example (against DSE 6.7.6):
 
 ```
 $ java -cp target/tombstone-counter-1.0.jar com.castools.TombStoneCounter -d /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
 
 Processing SSTable data files under directory: /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
 
-   Analyzing SSTable File:mc-2-big-Data.db
-      Total partition/row count: 4/6
-      Tomstone Count (Total): 6
-      Tomstone Count (Partition): 0
+   Analyzing SSTable File:aa-1-bti-Data.db
+      Total partition: 8
+      Tomstone Count (Total): 4
+      Tomstone Count (Partition): 3
       Tomstone Count (Range): 0
       Tomstone Count (ComplexColumn): 0
       Tomstone Count (Row) - Deletion: 0
-      Tomstone Count (Row) - TTL: 1
-      Tomstone Count (Cell) - Deletion: 5
-      Tomstone Count (Cell) - TTL: 0
-
-   Analyzing SSTable File:mc-1-big-Data.db
-      Total partition/row count: 3/7
-      Tomstone Count (Total): 9
-      Tomstone Count (Partition): 1
-      Tomstone Count (Range): 2
-      Tomstone Count (ComplexColumn): 3
-      Tomstone Count (Row) - Deletion: 1
       Tomstone Count (Row) - TTL: 0
-      Tomstone Count (Cell) - Deletion: 2
+      Tomstone Count (Cell) - Deletion: 1
       Tomstone Count (Cell) - TTL: 0
-
-   Analyzing SSTable File:mc-3-big-Data.db
-      Total partition/row count: 1/1
-      Tomstone Count (Total): 3
-      Tomstone Count (Partition): 0
-      Tomstone Count (Range): 0
-      Tomstone Count (ComplexColumn): 1
-      Tomstone Count (Row) - Deletion: 0
-      Tomstone Count (Row) - TTL: 0
-      Tomstone Count (Cell) - Deletion: 0
-      Tomstone Count (Cell) - TTL: 2
 ```
 
 Meanwhile, a tomstone statistics file (**tombstone_stats.csv**) is generated in the current directory with the following contents. This statsitics file can be easily further analyzed using other tools like Excel
 ```
 $ cat tombstone_stats.csv
-sstable_data_file,part_cnt,row_cnt,total_ts_cnt,ts_part_cnt,ts_range_cnt,ts_complexcol_cnt,ts_row_del_cnt,ts_row_ttl_cnt,ts_cell_del_cnt,ts_cell_ttl_cnt
-aa-1-bti-Data.db,4,6,6,0,0,0,0,1,5,0
+sstable_data_file,part_cnt,total_ts_cnt,ts_part_cnt,ts_range_cnt,ts_complexcol_cnt,ts_row_del_cnt,ts_row_ttl_cnt,ts_cell_del_cnt,ts_cell_ttl_cnt
+aa-1-bti-Data.db,8,4,3,0,0,0,0,1,0
 ```
 
 
