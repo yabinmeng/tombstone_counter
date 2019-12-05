@@ -57,12 +57,18 @@ Please **NOTE**:
 * The location of the DSE C* library jar files are in the following location:
   * For packaged installation: /usr/share/dse/cassandra/lib
   * For tarball installation: <tarball_install_home>/resources/cassandra/lib 
+  
+Once the DSE library files are copied, run the following commands to generate the final jar file (tombstone-counter-1.0.jar).
+```
+gradle clean build
+```
+
 
 # Using the Tool
 
 To execute the program, run the following command:
 ```
-java -cp target/tombstone-counter-1.0-SNAPSHOT.jar com.castools.TombStoneCounter <options>
+java -cp target/tombstone-counter-1.0.jar com.castools.TombStoneCounter <options>
 ```
 The supported program options are as below.
 ```
@@ -84,7 +90,7 @@ If "-sp" option is specified, it will not display tombstone detail information o
 When running the tool with specified Cassanra table data directory ("-d") option, the tool will generate a tombstone statistics (csv) file that includes the tombstone count of various categories for each SSTable file. Meanwhile, it will also prints out more read-able information on the console output. Below is an example:
 
 ```
-$ java -cp target/tombstone-counter-1.0-SNAPSHOT.jar com.castools.TombStoneCounter -d /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
+$ java -cp target/tombstone-counter-1.0.jar com.castools.TombStoneCounter -d /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
 
 Processing SSTable data files under directory: /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
 
