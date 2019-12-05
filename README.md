@@ -25,7 +25,7 @@ In order to get the total amount of tombstones in the system for a Cassandra tab
 
 # Compilng the Tool
 
-After cloning the code locally, run the following command which, when successful, will generate a target jar file under "target" sub-directory. (target/tombstone-counter-1.0-SNAPSHOT.jar).
+After cloning the code locally, run the following command which, when successful, will generate a target jar file under "target" sub-directory. (target/tombstone-counter-1.0.jar).
 ```
 mvn clean compile package
 ```
@@ -34,7 +34,7 @@ mvn clean compile package
 
 To execute the program, run the following command:
 ```
-java -cp target/tombstone-counter-1.0-SNAPSHOT.jar com.castools.TombStoneCounter <options>
+java -cp target/tombstone-counter-1.0.jar com.castools.TombStoneCounter <options>
 ```
 The supported program options are as below.
 ```
@@ -56,7 +56,7 @@ If "-sp" option is specified, it will not display tombstone detail information o
 When running the tool with specified Cassanra table data directory ("-d") option, the tool will generate a tombstone statistics (csv) file that includes the tombstone count of various categories for each SSTable file. Meanwhile, it will also prints out more read-able information on the console output. Below is an example:
 
 ```
-$ java -cp target/tombstone-counter-1.0-SNAPSHOT.jar com.castools.TombStoneCounter -d /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
+$ java -cp target/tombstone-counter-1.0.jar com.castools.TombStoneCounter -d /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
 
 Processing SSTable data files under directory: /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
 
