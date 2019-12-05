@@ -23,12 +23,14 @@ Estimated tombstone drop times:
 
 In order to get the total amount of tombstones in the system for a Cassandra table, you have to sum the droppable tombstone counts for all time periods and then repeat the process for all SSTables for that Cassandra table. This process is a little bit cubersome and more importantly, it can't tell you the number of tombstones of different kinds. In lieu of this, I write a tool (as presented in this repository) to help find tombstone counts for a Cassandra table, both in total and at different category levels.
 
-# Compilation and Usage of the Tool
+# Compilng the Tool
 
 After cloning the code locally, run the following command which, when successful, will generate a target jar file under "target" sub-directory. (target/tombstone-counter-1.0-SNAPSHOT.jar).
 ```
 mvn clean compile package
 ```
+
+# Using the Tool
 
 To execute the program, run the following command:
 ```
