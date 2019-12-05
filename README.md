@@ -134,9 +134,7 @@ Meanwhile, a tomstone statistics file (**tombstone_stats.csv**) is generated in 
 ```
 $ cat tombstone_stats.csv
 sstable_data_file,part_cnt,row_cnt,total_ts_cnt,ts_part_cnt,ts_range_cnt,ts_complexcol_cnt,ts_row_del_cnt,ts_row_ttl_cnt,ts_cell_del_cnt,ts_cell_ttl_cnt
-mc-2-big-Data.db,4,6,6,0,0,0,0,1,5,0
-mc-1-big-Data.db,3,7,9,1,2,3,1,0,2,0
-mc-3-big-Data.db,1,1,3,0,0,1,0,0,0,2
+aa-1-bti-Data.db,4,6,6,0,0,0,0,1,5,0
 ```
 
 
