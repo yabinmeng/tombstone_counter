@@ -58,7 +58,7 @@ Please **NOTE**:
   * For packaged installation: /usr/share/dse/cassandra/lib
   * For tarball installation: <tarball_install_home>/resources/cassandra/lib 
   
-***SIDE NOTE***: different DSE versions (e.g. 6.0.x vs. 6.7.x) may have differences regarding the list of availble libraries. The test that I've been doing is based on 6.7.x libraries. But this utility itself (and the provided release v1.0 jar file) has been tested against both DSE 6.0.x and DSE 6.7.x and it works fine. If you really want to be sure, you can rebuild this utility based on the matching DSE version. For example, if you want to run this utiliy against DSE 6.0.x, then just rebuid this utility with DSE 6.0.x libraries. 
+***SIDE NOTE***: different DSE versions (e.g. 6.0.x vs. 6.7.x) may have differences regarding the list of availble libraries. The test that I've been doing is based on 6.7.x libraries. But this utility itself (and the provided release v1.0 jar file) has been tested against both DSE 6.0.x and DSE 6.7.x and it works fine. If you really want to be sure, you can simply rebuild this utility based on the matching DSE version. 
   
 Once the DSE library files are copied, run the following commands to generate the final jar file (tombstone-counter-1.0.jar).
 ```
