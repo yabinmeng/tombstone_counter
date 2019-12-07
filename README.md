@@ -16,7 +16,7 @@ In my test, the utility has been built with DSE 6.7.6 libraries and it has been 
 * DDAC (5.1.16)
 * OSS C* 3.11.x (3.11.5)
 
-**IMPORTANT NOTE**: 
+**IMPORTANT**: 
 
 This repo (branch) only provides the utility source code, but NOT the depending DSE libraries. If you want to use this utility, please make you **follow DataStax license requirements and policies**!
  
