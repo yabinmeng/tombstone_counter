@@ -8,7 +8,7 @@
 
 3). Neither branch is designed working with older version of C* (version 2.x and before)
 
-**NOTE**: The provided release (v1.0) has been tested working with all the following DSE and C* versions:
+In my test, the utility has been built with DSE 6.7.6 libraries and it has been tested working with all the following DSE and C* versions:
 * DSE 6.7.x (6.7.6)
 * DSE 6.0.x (6.0.10)
 * DSE 5.1.x (5.1.17)
@@ -16,6 +16,11 @@
 * DDAC (5.1.16)
 * OSS C* 3.11.x (3.11.5)
 
+**IMPORTANT NOTE**: 
+
+This repo (branch) only provides the utility source code, but NOT the depending DSE libraries. If you want to use this utility, please make you **follow DataStax license requirements and policies**!
+ 
+Since the utility 
 ---
 
 # Overview
