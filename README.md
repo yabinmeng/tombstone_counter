@@ -100,9 +100,13 @@ When running the tool with specified Cassanra table data directory ("-d") option
 ```
 $ java -cp target/tombstone-counter-1.0.jar com.castools.TombStoneCounter -d /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
 
-Processing SSTable data files under directory: /var/lib/cassandra/data/testks/testbl-0065f581c95311e7bea2f709ea23126f
+Processing SSTable data files under directory: test.bkup.6010/testbl-fa44b341176a11eaa91a83381c121464/
 
-   Analyzing SSTable File:aa-1-bti-Data.db
+  ------------------------------------------------------------------------
+  (scanning files, it may take long time to finish for large size of data)
+  ------------------------------------------------------------------------
+
+  Analyzing SSTable File: aa-1-bti-Data.db
       Total partition: 8
       Tomstone Count (Total): 4
       Tomstone Count (Partition): 3
