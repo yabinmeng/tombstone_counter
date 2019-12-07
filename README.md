@@ -8,7 +8,13 @@
 
 3). Neither branch is designed working with older version of C* (version 2.x and before)
 
-**TBD**: Test this branch with DataStax DDAC, DSE 5.x, and OSS C* 3.x
+**NOTE**: The provided release (v1.0) has been tested working with all the following DSE and C* versions:
+* DSE 6.7.x (6.7.6)
+* DSE 6.0.x (6.0.10)
+* DSE 5.1.x (5.1.17)
+* DSE 5.0.x (5.0.14)
+* DDAC (5.1.16)
+* OSS C* 3.11.x (3.11.5)
 
 ---
 
