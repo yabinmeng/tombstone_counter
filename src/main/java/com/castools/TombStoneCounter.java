@@ -24,7 +24,7 @@ public class TombStoneCounter
 {
     private static Options options = new Options();
     private static String OUTPUT_STATS_FILENAME = "tombstone_stats";
-    private static int PROGRESS_BAR_BY_CELL_CNT = 100;
+    private static int PROGRESS_BAR_BY_PART_CNT = 2000;
 
     static {
         DatabaseDescriptor.clientInitialization(false);
@@ -152,12 +152,15 @@ public class TombStoneCounter
         // Go through each SSTable data file for tombstone
 
         System.out.println("\nProcessing SSTable data files under directory: "  + ssTableFolderName);
+        System.out.println("\n  ------------------------------------------------------------------------");
+        System.out.println("  (scanning files, it may take long time to finish for large size of data)");
+        System.out.println("  ------------------------------------------------------------------------");
 
         for ( File file: ssTableDataFiles ) {
             String fileName = file.getAbsolutePath();
 
             //if (cmdDisp) {
-            System.out.println("\n   Analyzing SSTable File:" + file.getName());
+            System.out.println("\n  Analyzing SSTable File: " + file.getName());
             //}
 
             // total tombstone count
@@ -178,9 +181,9 @@ public class TombStoneCounter
             // total partition count
             long totalPartitionCnt = 0;
             // total row count
-            long totalRowCnt = 0;
+            //long totalRowCnt = 0;
             // total cell count
-            long totalCellCnt = 0;
+            //long totalCellCnt = 0;
 
             Descriptor descriptor = Descriptor.fromFilename(fileName);
 
@@ -194,6 +197,21 @@ public class TombStoneCounter
                     UnfilteredRowIterator partition = scanner.next();
                     totalPartitionCnt++;
 
+                    /**
+                     *  Don't print progress bar at all
+                     *     (print a "." for every PROGRESS_BAR_BY_PART_CNT partitions scanned
+                     *
+                    if (cmdDisp) {
+                        if (totalPartitionCnt % PROGRESS_BAR_BY_PART_CNT == 0) {
+                            if (totalPartitionCnt == PROGRESS_BAR_BY_PART_CNT) {
+                                System.out.print("   ");
+                            }
+                            System.out.print(".");
+                            System.out.flush();
+                        }
+                    }
+                    */
+
                     if (!partition.partitionLevelDeletion().isLive()) {
                         totalTombstoneCnt++;
                         partTombstoneCnt++;
@@ -201,8 +219,7 @@ public class TombStoneCounter
 
                     while (partition.hasNext()) {
                         Unfiltered unfiltered = partition.next();
-
-                        totalRowCnt++;
+                        //totalRowCnt++;
 
                         switch (unfiltered.kind()) {
                             case ROW:
@@ -221,18 +238,7 @@ public class TombStoneCounter
                                 //System.out.println(row.primaryKeyLivenessInfo().toString());
 
                                 for (Cell cell : row.cells()) {
-                                    totalCellCnt++;
-
-                                    // Display command-line output when requested
-                                    if (cmdDisp) {
-                                        if (totalCellCnt % PROGRESS_BAR_BY_CELL_CNT == 0) {
-                                            if (totalCellCnt == PROGRESS_BAR_BY_CELL_CNT) {
-                                                System.out.print("   ");
-                                            }
-                                            System.out.print(".");
-                                            System.out.flush();
-                                        }
-                                    }
+                                    //totalCellCnt++;
 
                                     if (cell.isTombstone()) {
                                         totalTombstoneCnt++;
@@ -276,9 +282,14 @@ public class TombStoneCounter
 
                 // Display command-line output when requested
                 if (cmdDisp) {
-                    if (totalCellCnt > PROGRESS_BAR_BY_CELL_CNT) {
-                        System.out.println();
+                    /**
+                     *  Don't print progress bar at all
+                     *     (print a "." for every PROGRESS_BAR_BY_PART_CNT partitions scanned
+                     *
+                    if (totalPartitionCnt > PROGRESS_BAR_BY_PART_CNT) {
+                        System.out.println("\n");
                     }
+                    */
 
                     //System.out.println("      Total partition/row count: " + totalPartitionCnt + "/" + totalRowCnt);
                     System.out.println("      Total partition: " + totalPartitionCnt );
