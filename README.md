@@ -87,7 +87,7 @@ Options:
   -d,--dir <arg>    Specify Cassandra table data directory
   -h,--help         Displays this help message.
   -o,--output <arg> Specify output file for tombstone stats.
-  -sp,--suppress    Suppress commandline display output. 
+  -sp,--suppress    Suppress commandline display output details. Only the basic info is displayed. 
 ```
 When "-d" or "-o" option is not specified, it will use the current directory as the default directory for Cassandra table data (SSTable files) directory and the output diretory for generated tombstone statistics file.
 
