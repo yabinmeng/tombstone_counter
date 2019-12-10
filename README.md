@@ -135,7 +135,7 @@ aa-1-bti-Data.db,8,4,3,0,0,0,0,1,0
 
 Currently this utility is single-threaded and scans SSTables on one DSE node (for a particular C* table) sequentially. For C* tables with lots of data, it may take a long time to complete the scan. This can be improved with the following 2 possible options:
 1. Allow to scan multiple SSTables concurrently.
-2. For one particular SSTable, allow to use multiple theads to scan it (similar to "-j <thread_num>" option in "nodetool upgradesstables" command.
+2. For one particular SSTable, allow to use multiple theads to scan it.
 
 Another improvement that can make the utility a little easier to use is:
 
