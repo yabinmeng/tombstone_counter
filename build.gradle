@@ -30,6 +30,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
 }
 
-task listJars << {
+task listJars {
     configurations.compile.each { File file -> println file.name }
 }
