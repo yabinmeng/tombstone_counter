@@ -79,9 +79,9 @@ gradle clean build
 
 # Using the Tool
 
-To execute the program, run the following command:
+To execute the program, run the following command (assuming under the same directory where the jar file is):
 ```
-java -cp target/tombstone-counter-1.0.jar com.castools.TombStoneCounter <options>
+java -cp tombstone_counter-1.0.jar com.castools.TombStoneCounter <options>
 ```
 The supported program options are as below.
 ```
@@ -103,7 +103,7 @@ If "-sp" option is specified, it will not display tombstone detail information o
 When running the tool with specified Cassanra table data directory ("-d") option, the tool will generate a tombstone statistics (csv) file that includes the tombstone count of various categories for each SSTable file. Meanwhile, it will also prints out more read-able information on the console output. Below is an example (against DSE 6.0.10):
 
 ```
-$ java -cp ./tombstone-counter-1.0.jar com.castools.TombStoneCounter -d test.bkup.6010/testbl-fa44b341176a11eaa91a83381c121464/
+$ java -cp tombstone_counter-1.0.jar com.castools.TombStoneCounter -d test.bkup.6010/testbl-fa44b341176a11eaa91a83381c121464/
 
 Processing SSTable data files under directory: test.bkup.6010/testbl-fa44b341176a11eaa91a83381c121464/
 
